@@ -30,6 +30,11 @@ public class CoffeeService {
                 .filter(c -> c.getId() == id)
                 .findFirst();
     }
+    public List<Coffee> searchByName(String name) {
+        return coffees.stream()
+                .filter(c -> c.getName().toLowerCase().contains(name.toLowerCase()))
+                .toList();
+    }
 
     public Coffee create(Coffee newCoffee) {
         newCoffee.setId(idCounter.incrementAndGet());

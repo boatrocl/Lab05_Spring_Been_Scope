@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.coffeeshop.model.Coffee;
@@ -56,4 +57,9 @@ public class CoffeeController {
         boolean removed = coffeeService.delete(id);
         return removed ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
+    @GetMapping("/search")
+    public List<Coffee> search(@RequestParam String name) {
+        return coffeeService.searchByName(name);
+    }
+    
 }
